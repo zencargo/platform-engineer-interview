@@ -32,11 +32,14 @@ resource "google_compute_instance" "vm_instance_1" {
 }
 
 # --- Artifact Registry Resource ---
-resource "google_artifact_registry_repository" "web_service_1" {
+module "artifact_registry_1" {
+  source  = "GoogleCloudPlatform/artifact-registry/google"
+  version = "~> 0.4"
+
+  project_id    = "your-gcp-project-id"
   location      = "us-central1"
-  repository_id = "my-docker-repo-1"
-  description   = "Docker repository for interview exercise"
   format        = "DOCKER"
+  repository_id = "my-docker-repo-1"
 }
 
 # --- Second set of resources ---
@@ -73,9 +76,12 @@ resource "google_compute_instance" "vm_instance_2" {
 }
 
 # --- Artifact Registry Resource ---
-resource "google_artifact_registry_repository" "web_service_2" {
+module "artifact_registry_2" {
+  source  = "GoogleCloudPlatform/artifact-registry/google"
+  version = "~> 0.4"
+
+  project_id    = "your-gcp-project-id"
   location      = "us-central1"
-  repository_id = "my-docker-repo-2"
-  description   = "Docker repository for interview exercise"
   format        = "DOCKER"
+  repository_id = "my-docker-repo-2"
 }
